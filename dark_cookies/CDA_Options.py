@@ -1,5 +1,5 @@
 class Options():
-    def __init__(self, OPT_CL = True, OPT_ADP = True, OPT_CR = True, OPT_MDP = True, OPT_SAVE_COOKIES = True, OPT_AUTO = False, OPT_WEBSITE_CATEGORY= True, OPT_DETECT_CMPS= True, AUTO_UPDATE_CSS_SELECTORS=True, CSS_SELECTOR_LISTS = ['easylist','i dont care about cookies'], DATA_FOLDER_NAME = 'data') -> None:
+    def __init__(self, OPT_CL = True, OPT_ADP = True, OPT_CR = True, OPT_MDP = True, OPT_SAVE_COOKIES = True, OPT_AUTO = True, OPT_WEBSITE_CATEGORY= True, OPT_DETECT_CMPS= True, AUTO_UPDATE_CSS_SELECTORS=True, CSS_SELECTOR_LISTS = ['easylist','i dont care about cookies'], DATA_FOLDER_NAME = 'data') -> None:
         ### Configuration options for Cookie Dialog Analyser
         # Change the default values of each option above.
         # True = enabled, False = disabled

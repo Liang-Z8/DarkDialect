@@ -21,6 +21,7 @@ from dark_cookies.website_categories import detect_homepage2vec_category
 
 class CDA():
     def __init__(self, domain, options=Options()) -> None:
+        self.skip = False
         self.domain = domain
         self.driver = None
         self.options = options
@@ -64,10 +65,12 @@ class CDA():
         except Exception as e:
             print(e)
             self.resultsDB.websites.update_status(self.domain, 'error')
+            self.skip = True
         # Finally close the webdriver.
         finally:
             if self.driver != None:
                 self.close_webdriver()
+
             
     def detect_website_category(self):
         if self.options.OPT_WEBSITE_CATEGORY:
@@ -153,15 +156,15 @@ class CDA():
                 self.driver = None
         if self.driver is not None:
             connected = False
-            # Navigate to the url using the driver
-            # ATTEMPT 1: try https://www.
-            try:
-                url = "https://www." + self.domain
-                self.driver.get(url)
-                connected = True
-            except Exception as e:
-                logging.info("Failed to connect to '" + url + "'.")
-                connected = False
+            # # Navigate to the url using the driver
+            # # ATTEMPT 1: try https://www.
+            # try:
+            #     url = "https://www." + self.domain
+            #     self.driver.get(url)
+            #     connected = True
+            # except Exception as e:
+            #     logging.info("Failed to connect to '" + url + "'.")
+            #     connected = False
             # ATTEMPT 2: try http://www.
             if not(connected):
                 try:
@@ -171,15 +174,15 @@ class CDA():
                 except Exception as e:
                     logging.info("Failed to connect to '" + url + "'.")
                     connected = False
-            # ATTEMPT 3: try https://
-            if not(connected):
-                try:
-                    url = "https://" + self.domain
-                    self.driver.get(url)
-                    connected = True
-                except Exception as e:
-                    logging.info("Failed to connect to '" + url + "'.")
-                    connected = False
+            # # ATTEMPT 3: try https://
+            # if not(connected):
+            #     try:
+            #         url = "https://" + self.domain
+            #         self.driver.get(url)
+            #         connected = True
+            #     except Exception as e:
+            #         logging.info("Failed to connect to '" + url + "'.")
+            #         connected = False
             # ATTEMPT 4: try http://
             if not(connected):
                 try:

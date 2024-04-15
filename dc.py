@@ -23,6 +23,7 @@ def main(args):
     param args: List[String]
         the arguments for the script.
     '''
+    print(args)
     # Parse the name of the command
     if (len(args) > 1):
         arg1 = str(args[1]).lower()
